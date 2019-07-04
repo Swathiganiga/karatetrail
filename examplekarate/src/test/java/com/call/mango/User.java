@@ -1,33 +1,37 @@
 package com.call.mango;
+import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
 
-public class User {
-	private int id;
-	private String name;
-	private String role;
-	private boolean isEmployee;
+public class User{
+public static void main(String[] args)  throws UnknownHostException{ 
+	create();
+}
+public static Object create()
+{
+	MongoClient mongo=null;
+	try {
+		mongo = new MongoClient("localhost", 27017);
+	} catch (UnknownHostException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	
-	public int getId() {
-		return 100;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
-	public boolean isEmployee() {
-		return isEmployee;
-	}
-	public void setEmployee(boolean isEmployee) {
-		this.isEmployee = isEmployee;
-	}
+
+	 DB database = mongo.getDB("testdb22");
+		database.createCollection("users22", null);
+	DBCollection table = database.getCollection("users22");
+	BasicDBObject document = new BasicDBObject();
+	
+	document.put("name", "swathi");
+	document.put("lastName", "s");
+	document.put("age", 41);
+	return document;
+	
+}
 }

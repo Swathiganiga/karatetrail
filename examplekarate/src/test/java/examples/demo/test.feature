@@ -1,13 +1,14 @@
 Feature: Demo test api testing
 
-Scenario: Testing valid GET endpoints
-Given url 'https://reqres.in/api/users?page=2'
-When method GET
-Then status 200
-And match response.last_name =="Weaver"
 
-Scenario: scenario description
-    Given url 'https://reqres.in/api/users?page=2/5'
-    When an action is performed
-    Then something should be asserted
-    And match response.first_name: "Charles",last_name: "Morris"}
+Scenario: create a user and then get it by id
+
+
+  
+* def MongoDBExample = Java.type('com.call.mango.User')
+* def result = MongoDBExample.create()
+* print 'created id is: ' + result
+
+* match result == {  name : "swathi" , lastName : "s" , age : 41 }
+
+
